@@ -1,10 +1,10 @@
-FROM python:3.11-slim
+FROM n8nio/n8n:latest
 
-WORKDIR /app
+USER root
+RUN apt update && apt install -y python3 python3-pip
+RUN pip3 install matplotlib pandas openpyxl
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN mkdir -p /scripts
+COPY pipeline_forms_para_laudos_corrigido_final.py /scripts/
 
-COPY . .
-
-CMD ["python", "pipeline_forms_para_laudos_corrigido_final.py"]
+USER node
