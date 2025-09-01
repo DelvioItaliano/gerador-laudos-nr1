@@ -1,6 +1,13 @@
+
 FROM n8nio/n8n:latest
 
+# Cache-bust para forçar rebuild quando necessário
+ARG CACHE_BUST=1
+RUN echo "CACHE_BUST=$CACHE_BUST"
+
+# Precisamos ser root para instalar pacotes
 USER root
+
 
 # Python + libs via APK (inclui reportlab pronto)
 RUN apk update && apk add --no-cache \
