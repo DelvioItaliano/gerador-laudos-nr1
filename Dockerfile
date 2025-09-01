@@ -24,4 +24,3 @@ RUN chown -R node:node /scripts
 USER node
 
 
-
